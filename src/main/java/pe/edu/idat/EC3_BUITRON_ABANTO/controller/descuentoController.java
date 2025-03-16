@@ -25,6 +25,7 @@ public class descuentoController {
 
         Integer antiguedad = descuento.getAntiguedad();
         double ventas= descuento.getVenta();
+
         double descuentototal = 0 ;
         String estilodescuento = "alert-primary";
 
@@ -45,7 +46,7 @@ public class descuentoController {
 
 
         model.addAttribute("resultado",
-                "su descuento es  " +  descuentototal );
+                "SU DESCUENTO ES " + descuentototal  + " SU TOTAL A PAGAR  ES  " + (ventas - descuentototal));
 
         model.addAttribute("visualizaralerta", true);
         model.addAttribute("estilodescuento", estilodescuento);
