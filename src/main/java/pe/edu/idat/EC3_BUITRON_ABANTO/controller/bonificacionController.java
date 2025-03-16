@@ -17,16 +17,16 @@ public class bonificacionController {
     }
     @PostMapping("/calcularbonif")
     public String calcuarBonif(@ModelAttribute("bonificacionModel") bonificacionModel calcbonif, Model model){
-        Integer diasPago = calcbonif.getDiasPago(); int descuento = 0;
+        Integer diasPago = calcbonif.getDiasPago(); Double descuento = 0.0;
         Double credito = calcbonif.getcredito(), deuda = 0.0;
         String diagnostico = "Usted tiene descuento: ", estiloDiagnostico= "alert-primary";
 
         if (diasPago < 7){
-            descuento = 10;
-            diagnostico += descuento + "%";
-        } else if (diasPago>=7 & diasPago < 15){
-            descuento = 5;
-            diagnostico += descuento + "%";
+            descuento = 10.0;
+            diagnostico += String.format("%.0f",descuento) + "%";
+        } else if (diasPago < 15){
+            descuento = 5.0;
+            diagnostico += String.format("%.0f",descuento) + "%";
         }else {
             diagnostico = "Usted no tiene descuento.";
             estiloDiagnostico = "alert-danger";
