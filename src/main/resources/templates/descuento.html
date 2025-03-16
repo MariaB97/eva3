@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en " xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
 </head>
 <body>
+
+<div class="card">
+    <div class="card-header">
+        DESCUENTO
+    </div>
+    <div class="card-body">
+
+        <form th:action="@{/calculardescuento}" method="post"
+              th:object ="${descuentomodel}">
+
+            <div class="mb-3">
+                <label for="txtantiguedad" class="form-label">INGRESE LOS AÑOS DE ANTIGUEDAD:</label>
+                <input type="number" th:field="*{antiguedad}" class="form-control" id="txtantiguedad" placeholder="Antiguedad">
+            </div>
+
+            <div class="mb-3">
+                <label for="txtventas" class="form-label">INGRESE EL MONTO A PAGAR :</label>
+                <input type="number" th:field="*{venta}" class="form-control" id="txtventas" placeholder="Ventas">
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">CALCULAR</button>
+        </form>
+        <div th:if = "${visualizaralerta}" class="alert " th:classappend="${estilodescuento}" role="alert">
+            <span th:text="${resultado} ?: ''"></span>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>

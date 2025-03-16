@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
 </head>
 <body>
+<div class="card">
+    <div class="card-header">
+        COMISION
+    </div>
+    <div class="card-body">
+
+        <form th:action="@{/calcularcomision}" method="post"
+              th:object ="${comisionmodel}">
+            <div class="mb-3">
+
+                <label for="txtventas" class="form-label">INGRESE SUS VENTAS:</label>
+                <input type="number" th:field="*{ventas}" class="form-control" id="txtventas" placeholder="ventas">
+            </div>
+
+            <button type="submit" class="btn btn-primary">CALCULAR</button>
+        </form>
+        <div th:if = "${visualizaralerta}" class="alert " th:classappend="${estilocomision}" role="alert">
+            <span th:text="${resultado} ?: ''"></span>
+        </div>
+
+    </div>
+
+</div>
+
 
 </body>
 </html>
